@@ -1,10 +1,12 @@
-const Cloudinary = require("cloudinary").v2
-const express = require('express');
+let Cloudinary = require("cloudinary").v2
+let express = require('express');
 require('dotenv').config();
-const passport = require('passport');
-const mongoose = require('mongoose');
-const session = require('express-session');
-const app = express()
+let passport = require('passport');
+let mongoose = require('mongoose');
+let session = require('express-session');
+let app = express();
+const GlobalError = require("./Utils/Error")
+let Router = require('./routes/index.routes')
 
 Cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
@@ -19,14 +21,14 @@ app.use(session({
     secret: process.env.SECRET_KEY
 }))
 
-mongoose.connect('')
+mongoose.connect('mongodb://localhost:27017/vegDB')
     .then(() => {
         console.log('connected to db')
     }).catch((err) => {
         console.log(err)
     });
 
-const PORT = 4000 || process.env.PORT
+let PORT = 4000 || process.env.PORT
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require('cors')({ origin: "*" }));
@@ -51,8 +53,10 @@ passport.deserializeUser((obj, done) => {
     }
 });
 
+
+app.use("/", Router)
 app.listen(PORT, () => {
-    console.log('Conneted to server');
+    console.log('Conneted to server at port' + PORT);
 })
 
 

@@ -4,6 +4,7 @@
   "description": "A minimalist applicaton for easing the tasks of vegetable businesses.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server/index.js",
     "test": "cypress"
   },
   "repository": {
