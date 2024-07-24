@@ -17,7 +17,7 @@ Cloudinary.config({
 app.use(session({
     cookie: { name: "user", secret: process.env.SECRET_KEY },
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     secret: process.env.SECRET_KEY
 }))
 
