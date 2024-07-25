@@ -30,10 +30,11 @@ function createUser(req, res, next) {
             });
 
             // Successfully authenticated and session created
-            return res.status(201).json({
+            res.status(201).json({
                 status: "success",
                 message: " user created"
             })
+            return next()
         });
 
     })
@@ -56,10 +57,8 @@ function userAuth(req, res, next) {
                 message: "failed to create session",
                 error: err
             });
-            
             // Successfully authenticated and session created
             res.locals.currentUser = req.user
-            // req.session.save()
             res.status(200).json({
                 status: "success",
                 message: "user authenticated successfully",
