@@ -1,5 +1,5 @@
 let Routes = require("express").Router()
-let customerRouter = require("./customer.routes");
+let customerRouter = require("./user.routes");
 
 Routes.use('/user', customerRouter);
 
