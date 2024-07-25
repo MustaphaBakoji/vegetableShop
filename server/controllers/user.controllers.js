@@ -43,7 +43,7 @@ function userAuth(req, res, next) {
     passport.authenticate('local', function (err, user) {
         if (!user) return res.status(403).json({
             status: "fail",
-            message: "failed to authenticate user"
+            message: "incorrect username or password "
         })
         if (err) return res.status(500).json({
             status: "fail",
@@ -56,17 +56,25 @@ function userAuth(req, res, next) {
                 message: "failed to create session",
                 error: err
             });
-
+            
             // Successfully authenticated and session created
-            return res.status(200).json({
+            res.locals.currentUser = req.user
+            // req.session.save()
+            res.status(200).json({
                 status: "success",
                 message: "user authenticated successfully",
-                user: user
+                user: req.user
             });
+            return next()
         });
-
-
-    })
+    })(req, res, next)
 }
 
-module.exports = { createUser, userAuth }
+function test(req, res, next) {
+
+    console.log("user", req.user, req.isAuthenticated(), res.locals.currentUser);
+    res.status(200).json({ user: req.user, logged: req.isAuthenticated() })
+    return next()
+}
+
+module.exports = { createUser, userAuth, test }
