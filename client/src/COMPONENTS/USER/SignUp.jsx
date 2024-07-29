@@ -8,6 +8,11 @@ function Signup() {
 
     const handleSignup = (e) => {
         e.preventDefault();
+        fetch("https://localhost:4000/user/create", { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) }).then((res) => {
+            return res.json()
+        }).then((data) => {
+            console.log(data)
+        })
         // Handle signup logic here  
     };
 

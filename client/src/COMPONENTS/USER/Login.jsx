@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { json, Link } from 'react-router-dom';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -7,6 +7,11 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        fetch("https://localhost:4000/user/auth", { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) }).then((res) => {
+            return res.json()
+        }).then((data) => {
+            console.log(data)
+        })
         // Handle login logic here  
     };
 
