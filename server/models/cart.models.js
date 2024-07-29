@@ -4,11 +4,11 @@ const CartScheme = mongoose.Schema(
     {
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'USer'
+            ref: 'User'
         },
         cartItems: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Producs'
+            ref: 'Products'
         }],
 
 

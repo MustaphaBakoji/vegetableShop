@@ -1,6 +1,8 @@
-let Routes = require("express").Router()
-let customerRouter = require("./user.routes");
+const Routes = require("express").Router()
+const userRouter = require("./user.routes");
+const adminRouter = require("./Admin.routes");
 
-Routes.use('/user', customerRouter);
+Routes.use('/user', userRouter);
+Routes.use('/admin', adminRouter);
 
 module.exports = Routes

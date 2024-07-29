@@ -1,4 +1,3 @@
-let Cloudinary = require("cloudinary").v2
 let express = require('express');
 require('dotenv').config();
 let passport = require('passport');
@@ -9,11 +8,6 @@ const GlobalError = require("./Utils/Error")
 const Admin = require("./models/user.models")
 let Router = require('./routes/index.routes')
 
-Cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_SECRET,
-    api_secret: process.env.CLOUDINARY_SECRET
-})
 
 app.use(session({
     cookie: { name: "user", secret: process.env.SECRET_KEY, expires: 60000 },

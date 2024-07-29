@@ -10,7 +10,7 @@ const ProductScheme = new mongoose.Schema({
         type: String,
         required: [true, 'Product price has to be provided']
     },
-    image_url: {
+    imageUrl: {
         type: String,
         required: true
     }
