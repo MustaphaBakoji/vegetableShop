@@ -1,18 +1,29 @@
+import { useSpring } from 'framer-motion';
 import React, { useState } from 'react';
 
 function AdminAdd() {
+    const [isLoading, setIsLoading] = useState(false)
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [productImage, setProductImage] = useState(null);
-
     const handleAddProduct = (e) => {
+        setIsLoading(true)
+        let form = new FormData()
+
         e.preventDefault();
+        form.append('image', productImage)
+        form.append('name', productName,)
+        form.append('price', productPrice)
+
+
+        fetch("http://localhost:4000/admin/uploadProduct", {
+            method: "POST", body: form,
+        }).then(res => res.json()).then(data => {
+            setIsLoading(false)
+        })
+
         // Handle the product addition logic here  
-        console.log({
-            productName,
-            productPrice,
-            productImage,
-        });
+
     };
 
     const handleImageChange = (e) => {
@@ -30,7 +41,10 @@ function AdminAdd() {
                             placeholder="Product Name"
                             className="input input-bordered w-full"
                             value={productName}
-                            onChange={(e) => setProductName(e.target.value)}
+                            onChange={
+                                (e) => setProductName(e.target.value)
+
+                            }
                             required
                         />
                     </div>

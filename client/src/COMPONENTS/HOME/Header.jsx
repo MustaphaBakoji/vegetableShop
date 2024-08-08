@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../REDUX_STORE/cartSlice';
+import { GiThreeLeaves } from 'react-icons/gi';
 
 function Header() {
     const [showMenu, setShowMenu] = useState(false);
@@ -14,7 +15,9 @@ function Header() {
 
     return (
         <header className="bg-green-800 text-white p-5">
+
             <div className="container mx-auto flex items-center justify-between">
+
                 <h1 className="text-3xl font-bold flex">
                     <motion.p initial={{ scale: 0.1, rotate: 180 }} animate={{ scale: 1, rotate: 0 }} transition={{ duration: 1 }}>F</motion.p>
                     <motion.p initial={{ scale: 0.1, rotate: 180 }} animate={{ scale: 1, rotate: 0 }} transition={{ duration: 1, delay: 0.2 }}>A</motion.p>

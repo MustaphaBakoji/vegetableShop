@@ -22,7 +22,6 @@ function createUser(req, res, next) {
             return res.status(500).json({
                 status: "fail",
                 message: " user not created  :try again",
-                error: err
             })
         }
         req.login(user, function (err) {

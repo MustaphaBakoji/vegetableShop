@@ -4,7 +4,12 @@ const Cloudinary = require('../Utils/cloudinary')
 
 
 function createProduct(req, res, next) {
-    Cloudinary.uploader.upload(req.file.path, function (err, results) {
+    const b64 = Buffer.from(req.file.buffer).toString("base64");
+    let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+
+
+    Cloudinary.uploader.upload(dataURI, { folder: 'vegetables' }, function (err, results) {
+        console.log(req.file);
         if (err) {
             return res.status(500).json({
                 status: "fail",
@@ -17,6 +22,7 @@ function createProduct(req, res, next) {
             price: req.body.price,
             imageUrl: results.url
         }
+
 
         Product.create(newProduct)
             .then((uploadedProduct) => {
@@ -39,7 +45,6 @@ function createProduct(req, res, next) {
 }
 
 function updateProduct(req, res, next) {
-
     Product.findByIdAndUpdate({ id: req.body.id }, { name: req.body.name, price: req.body.price }, { new: true })
         .then((updatedProduct) => {
             res.status(200).json({

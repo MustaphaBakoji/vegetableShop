@@ -8,29 +8,34 @@ import Signup from './COMPONENTS/USER/SignUp';
 import AdminAdd from './COMPONENTS/ADMIN/AdminAddItems';
 import AdminItem from './COMPONENTS/ADMIN/AdminItem';
 import { AnimatePresence, motion } from 'framer-motion';
-import UpBotton from './COMPONENTS/HOME/UpBotton';
+
+
 
 import Cart from './COMPONENTS/HOME/CART/CartBody';
 import { useSelector } from 'react-redux';
+import { GiThreeLeaves } from 'react-icons/gi';
+import Loading from './COMPONENTS/Utils/Loading';
+import { Route, Routes } from 'react-router';
 
 function App() {
   let { showCart } = useSelector(state => state.cartReducer)
   return (
-    <AnimatePresence>  <div className="App">
+    <div className="App">
+      <AnimatePresence>
 
-      <UpBotton></UpBotton>
-      <Header />
-      {showCart && <Cart />}
-      <AdminItem />
-      <AdminItem />
-      <AdminItem />
-      <AdminItem /> <AdminItem />
-      <AdminItem />
-      <AdminAdd />
-      <Signup />
-      <Login />
-      <Body />
-    </div></AnimatePresence>
+      //  <AdminAdd />
+
+        <Header />
+
+        {showCart && <Cart />}
+        <Routes>
+          <Route path='/' element={<Body />} />
+          <Route path='login' element={<Login />} />
+          <Route path='/signUp' element={<Signup />} />
+
+
+        </Routes>
+      </AnimatePresence></div>
   );
 }
 

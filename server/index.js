@@ -16,7 +16,7 @@ app.use(session({
     secret: process.env.SECRET_KEY
 }))
 
-mongoose.connect('mongodb://localhost:27017/vegDB')
+mongoose.connect('mongodb://127.0.0.1:27017/vegDB')
     .then(() => {
         console.log('connected to db')
     }).catch((err) => {
@@ -59,7 +59,7 @@ passport.deserializeUser((obj, done) => {
 app.use("/", Router)
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
-    console.log("middleware",req.session, req.isAuthenticated());
+    console.log("middleware", req.session, req.isAuthenticated());
     return next();
 })
 app.listen(PORT, () => {

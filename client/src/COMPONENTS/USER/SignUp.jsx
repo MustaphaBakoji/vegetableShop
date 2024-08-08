@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from '../Utils/Loading';
 
 function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const [isLoading, setIsLoading] = useState(false)
     const handleSignup = (e) => {
+
         e.preventDefault();
-        fetch("https://localhost:4000/user/create", { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) }).then((res) => {
-            return res.json()
-        }).then((data) => {
-            console.log(data)
-        })
+        setIsLoading(true)
+        fetch("http://localhost:4000/user/create", { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: name, email, password }) })
+            .then((res) => {
+                return res.json()
+            }).then((data) => {
+                console.log(data)
+                setIsLoading(false)
+            })
         // Handle signup logic here  
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <>  {isLoading ? <Loading /> : <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="bg-white shadow-md rounded-lg p-8 w-96">
                 <h2 className="text-2xl text-center font-bold mb-6">Sign Up</h2>
                 <form onSubmit={handleSignup}>
@@ -62,7 +67,7 @@ function Signup() {
                     </Link>
                 </p>
             </div>
-        </div>
+        </div>}</>
     );
 }
 
