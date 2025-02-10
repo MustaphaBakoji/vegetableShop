@@ -14,6 +14,11 @@ const scheme = mongoose.Schema(
       type: {},
       ref: 'User',
       required: true
+    },
+    delivered: {
+      type: Boolean,
+      required: true,
+      default: false
     }
   },
   { timestamp: true }
