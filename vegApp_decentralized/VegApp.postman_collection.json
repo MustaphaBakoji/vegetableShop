@@ -1,0 +1,919 @@
+{
+	"info": {
+		"_postman_id": "5c418ae5-83c9-4b6b-8818-d11309f76664",
+		"name": "VegApp",
+		"description": "# 📄 Get started here\n\nThis template contains a boilerplate for documentation that you can quickly customize and reuse.\n\n## 🔖 How to use this template\n\n- Replace the content given brackets (()) with your API's details.\n    \n- Tips are formatted in `codespan` - feel free to read and remove them.\n    \n\n---\n\n`Start with a brief overview of what your API offers.`\n\nThe ((product name)) provides many API products, tools, and resources that enable you to ((add product value here)).\n\n`You can also list the APIs you offer, link to the relevant pages, or do both in this section.`\n\n## **Getting started guide**\n\n`List the steps or points required to start using your APIs. Make sure to cover everything required to reach success with your API as quickly as possible.`\n\nTo start using the ((add APIs here)), you need to -\n\n`The points given below are from The Postman API's documentation. You can reference it to write your own getting started guide.`\n\n- You must use a valid API Key to send requests to the API endpoints. You can get your API key from Postman's [integrations dashboard](https://go.postman.co/settings/me/api-keys).\n    \n- The API has [rate and usage limits](https://learning.postman.com/docs/developer/postman-api/postman-api-rate-limits/).\n    \n- The API only responds to HTTPS-secured communications. Any requests sent via HTTP return an HTTP 301 redirect to the corresponding HTTPS resources.\n    \n- The API returns request responses in JSON format. When an API request returns an error, it is sent in the JSON response as an error key.\n    \n\n## Authentication\n\n`Add details on the authorization keys/tokens required, steps that cover how to get them, and the relevant error codes.`\n\nThe ((product name)) API uses ((add your API's authorization type)) for authentication.\n\n`The details given below are from the Postman API's documentation. You can reference it to write your own authentication section.`\n\nPostman uses API keys for authentication. You can generate a Postman API key in the [API keys](https://postman.postman.co/settings/me/api-keys) section of your Postman account settings.\n\nYou must include an API key in each request to the Postman API with the X-Api-Key request header.\n\n### Authentication error response\n\nIf an API key is missing, malformed, or invalid, you will receive an HTTP 401 Unauthorized response code.\n\n## Rate and usage limits\n\n`Use this section to cover your APIs' terms of use. Include API limits, constraints, and relevant error codes, so consumers understand the permitted API usage and practices.`\n\n`The example given below is from The Postman API's documentation. Use it as a reference to write your APIs' terms of use.`\n\nAPI access rate limits apply at a per-API key basis in unit time. The limit is 300 requests per minute. Also, depending on your plan, you may have usage limits. If you exceed either limit, your request will return an HTTP 429 Too Many Requests status code.\n\nEach API response returns the following set of headers to help you identify your use status:\n\n| Header | Description |\n| --- | --- |\n| `X-RateLimit-Limit` | The maximum number of requests that the consumer is permitted to make per minute. |\n| `X-RateLimit-Remaining` | The number of requests remaining in the current rate limit window. |\n| `X-RateLimit-Reset` | The time at which the current rate limit window resets in UTC epoch seconds. |\n\n### 503 response\n\nAn HTTP `503` response from our servers indicates there is an unexpected spike in API access traffic. The server is usually operational within the next five minutes. If the outage persists or you receive any other form of an HTTP `5XX` error, [contact support](https://support.postman.com/hc/en-us/requests/new/).\n\n### **Need some help?**\n\n`Add links that customers can refer to whenever they need help.`\n\nIn case you have questions, go through our tutorials ((link to your video or help documentation here)). Or visit our FAQ page ((link to the relevant page)).\n\nOr you can check out our community forum, there’s a good chance our community has an answer for you. Visit our developer forum ((link to developer forum)) to review topics, ask questions, and learn from others.\n\n`You can also document or add links to libraries, code examples, and other resources needed to make a request.`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36992061"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 404\", function () {",
+											"    pm.expect(pm.response.code).to.equal(404);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the correct Content-Type header\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response body is empty\", function () {",
+											"    pm.expect(pm.response.text()).to.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response body is a valid HTML format\", function () {",
+											"    pm.expect(pm.response.text()).to.match(/^<!DOCTYPE html>/);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the response does not contain any error message\", function () {",
+											"    const responseData = pm.response.text();",
+											"    ",
+											"    pm.expect(responseData).to.not.include(\"error\").and.to.not.include(\"Error\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "productName",
+											"value": " \"onions\"",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": " 200",
+											"type": "text"
+										},
+										{
+											"key": "buyer",
+											"value": " req.user._id",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": " \"pending\"",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": " req.body.address",
+											"type": "text"
+										},
+										{
+											"key": "phoneNumber",
+											"value": " req.body.phoneNumber",
+											"type": "text"
+										},
+										{
+											"key": "paymentMethod",
+											"value": " req.body.paymentMethod",
+											"type": "text"
+										},
+										{
+											"key": "paymentStatus",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4000/user/order/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"user",
+										"order",
+										"create"
+									]
+								},
+								"description": "### Create User Order\n\nThis endpoint allows the creation of a new user order.\n\n#### Request Body\n\n- productId (text)\n    \n- price (text)\n    \n- buyer (text)\n    \n- paymentMethod (text)\n    \n\n#### Response\n\nThe response of this request is a JSON schema."
+							},
+							"response": []
+						},
+						{
+							"name": "get all orders for the current user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 404\", function () {",
+											"    pm.expect(pm.response.code).to.equal(404);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the correct Content-Type header\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response body is empty\", function () {",
+											"    pm.expect(pm.response.text()).to.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Ensure the response body is a valid HTML format\", function () {",
+											"    pm.expect(pm.response.text()).to.have.string('<html>');",
+											"    pm.expect(pm.response.text()).to.have.string('</html>');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/user/order/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"user",
+										"order",
+										""
+									]
+								},
+								"description": "### GET /user/orders/\n\nThis endpoint retrieves the orders associated with the user.\n\n#### Request\n\nNo request body is required for this endpoint.\n\n#### Response\n\nThe response will be a JSON object with the following schema:\n\n``` json\n{\n  \"orders\": {\n    \"type\": \"array\",\n    \"items\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"orderNumber\": {\n          \"type\": \"string\"\n        },\n        \"orderDate\": {\n          \"type\": \"string\",\n          \"format\": \"date-time\"\n        },\n        \"totalAmount\": {\n          \"type\": \"number\"\n        },\n        \"status\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "view a specific order by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 404\", function () {",
+											"  pm.expect(pm.response.code).to.equal(404);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the Content-Type header set to 'text/html'\", function () {",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.include('text/html');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response body is empty\", function () {",
+											"    pm.expect(pm.response.text()).to.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the response body is a valid HTML format\", function () {",
+											"    pm.expect(pm.response.text()).to.include('<html>');",
+											"    pm.expect(pm.response.text()).to.include('</html>');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/user/order/682a900feb3be83aa62b3080",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"user",
+										"order",
+										"682a900feb3be83aa62b3080"
+									]
+								},
+								"description": "### GET /user/orders/{orderId}\n\nThis endpoint retrieves the details of a specific order identified by the orderId in the URL.\n\n#### Request\n\n- Path Parameters\n    \n    - `orderId` (string): The unique identifier of the order.\n        \n\n#### Response\n\nUpon a successful request, the server responds with a status code of 200 and a JSON object containing the details of the order.\n\n- `order` (array): An array containing order objects with the following properties:\n    \n    - `_id` (string): The unique identifier of the order.\n        \n    - `product` (string): The product associated with the order.\n        \n    - `buyer` (string): The buyer of the product.\n        \n    - `status` (string): The status of the order.\n        \n    - `address` (string): The delivery address for the order.\n        \n    - `phoneNumber` (string): The contact phone number associated with the order.\n        \n    - `paymentMethod` (string): The method of payment for the order.\n        \n    - `paymentStatus` (string): The status of the payment for the order.\n        \n    - `delivered` (boolean): Indicates if the order has been delivered.\n        \n    - `deliveredAt` (string): The date and time when the order was delivered.\n        \n    - `createdAt` (string): The date and time when the order was created.\n        \n    - `__v` (number): Version number of the order object.\n        \n- `status` (string): Additional status information related to the request."
+							},
+							"response": []
+						},
+						{
+							"name": "pay",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 404\", function () {",
+											"    pm.expect(pm.response.code).to.equal(404);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Content-Type header is 'text/html'\", function () {",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.include('text/html');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response body is empty\", function () {",
+											"    pm.expect(pm.response.text()).to.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the response contains a meaningful error message\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"404 Not Found\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/user/order/pay",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"user",
+										"order",
+										"pay"
+									]
+								},
+								"description": "### Update Order Payment Details\n\nThis endpoint allows the user to update the payment details for a specific order.\n\n#### Request\n\nThe request should be sent as an HTTP PUT to `http://localhost:4000/user/orders/682ba2cb2bfa8836094332c8/pay`.\n\n##### Request Body\n\n- `paymentMethod` (text): Description of the payment method.\n    \n\n#### Response\n\nThe response will be in JSON format with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"status\": {\"type\": \"string\"},\n        \"message\": {\"type\": \"string\"},\n        \"order\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"_id\": {\"type\": \"string\"},\n                \"product\": {\"type\": \"string\"},\n                \"buyer\": {\"type\": \"string\"},\n                \"status\": {\"type\": \"string\"},\n                \"address\": {\"type\": \"string\"},\n                \"phoneNumber\": {\"type\": \"string\"},\n                \"paymentMethod\": {\"type\": \"string\"},\n                \"paymentStatus\": {\"type\": \"string\"},\n                \"delivered\": {\"type\": \"boolean\"},\n                \"deliveredAt\": {\"type\": [\"string\", \"null\"]},\n                \"createdAt\": {\"type\": \"string\"},\n                \"__v\": {\"type\": \"number\"}\n            }\n        }\n    }\n}\n\n ```"
+							},
+							"response": []
+						}
+					],
+					"description": "The `/user/order` routes let's you manage your orders as a user"
+				},
+				{
+					"name": "cart",
+					"item": [
+						{
+							"name": "add",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 404\", function () {",
+											"    pm.expect(pm.response.code).to.equal(404);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the correct Content-Type header\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response body is empty\", function () {",
+											"    pm.expect(pm.response.text()).to.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response body is a valid HTML format\", function () {",
+											"    pm.expect(pm.response.text()).to.match(/^<!DOCTYPE html>/);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Ensure that the response does not contain any sensitive information\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.not.include.keys('password', 'creditCardNumber', 'ssn');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "product",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4000/user/cart/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"user",
+										"cart",
+										"add"
+									]
+								},
+								"description": "### Add Item to User's Cart\n\nThis endpoint allows the addition of an item to the user's cart.\n\n#### Request Body\n\n- No request body parameters were provided for this request.\n    \n\n#### Response\n\n- **Status**: 200\n    \n- **Content-Type**: application/json\n    \n- { \"updatedUser\": { \"_id\": \"\", \"email\": \"\", \"username\": \"\", \"role\": \"\", \"__t\": \"\", \"order\": \\[\"\"\\], \"address\": \"\", \"phoneNumber\": \"\", \"cart\": \\[{\"product\": \"\", \"_id\": \"\"}\\], \"createdAt\": \"\", \"updatedAt\": \"\", \"__v\": 0 }, \"status\": \"\", \"message\": \"\"}"
+							},
+							"response": []
+						},
+						{
+							"name": "get cart items",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"description": "# Retrieve User's Cart\n\nThis endpoint retrieves the user's cart details.\n\n### Request\n\n- Method: GET\n    \n- URL: `http://localhost:4000/user/cart`\n    \n- Body (x-www-form-urlencoded):\n    \n    - `product`: (text) - Description of the product\n        \n\n### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\nExample response body:\n\n``` json\n{\n    \"status\": \"\",\n    \"cart\": [\n        {\n            \"product\": {\n                \"_id\": \"\",\n                \"name\": \"\",\n                \"price\": \"\",\n                \"imageUrl\": \"\",\n                \"createdAt\": \"\",\n                \"updatedAt\": \"\",\n                \"__v\": 0\n            },\n            \"_id\": \"\"\n        }\n    ]\n}\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "remove from cart",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "product",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4000/user/cart/682b28bf1847239eca513996/remove",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"user",
+										"cart",
+										"682b28bf1847239eca513996",
+										"remove"
+									]
+								},
+								"description": "This endpoint sends an HTTP DELETE request to remove a specific product from the user's cart.\n\n### Request Body\n\n- **product** (text): Description of the product to be removed from the cart.\n    \n\n### Response\n\nThe response is in JSON format with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"status\": {\n            \"type\": \"string\"\n        },\n        \"message\": {\n            \"type\": \"string\"\n        },\n        \"cart\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"product\": {\n                        \"type\": \"string\"\n                    },\n                    \"_id\": {\n                        \"type\": \"string\"\n                    }\n                }\n            }\n        }\n    }\n}\n\n ```"
+							},
+							"response": []
+						}
+					],
+					"description": "The `/user/cart` allows users to manage their carts"
+				},
+				{
+					"name": "logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"logout"
+							]
+						},
+						"description": "This endpoint sends an HTTP GET request to [http://localhost:4000/user/logout](http://localhost:4000/user/logout) to log out the user.\n\n### Response\n\nThe response for this request is in the JSON format and has the following schema:\n\n- `status` (string): The status of the logout operation.\n    \n- `message` (string): Any additional message related to the logout operation.\n    \n- `redirect` (string): The URL to which the user should be redirected after logging out.\n    \n\nExample:\n\n``` json\n{\n    \"status\": \"\",\n    \"message\": \"\",\n    \"redirect\": \"\"\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "682a6fe8b206d7d1b57fa383",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "### Delete User\n\nThis endpoint is used to delete a user.\n\n#### Request Body\n\n- id (text): The ID of the user to be deleted.\n    \n\n#### Response\n\nThe response will be in JSON format and will follow the schema provided by the user."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"update"
+							]
+						},
+						"description": "### Update User Details\n\nThis endpoint allows the user to update their details.\n\n#### Request Body\n\n- `phoneNumber` (text): The user's updated phone number.\n    \n- `address` (text): The user's updated address.\n    \n\n#### Response\n\nThe response will be in JSON format with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"status\": {\"type\": \"string\"},\n        \"message\": {\"type\": \"string\"},\n        \"user\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"_id\": {\"type\": \"string\"},\n                \"email\": {\"type\": \"string\"},\n                \"username\": {\"type\": \"string\"},\n                \"role\": {\"type\": \"string\"},\n                \"__t\": {\"type\": \"string\"},\n                \"order\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}},\n                \"address\": {\"type\": \"string\"},\n                \"phoneNumber\": {\"type\": \"string\"},\n                \"cart\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                        \"type\": \"object\",\n                        \"properties\": {\n                            \"product\": {\"type\": \"string\"},\n                            \"_id\": {\"type\": \"string\"}\n                        }\n                    }\n                },\n                \"createdAt\": {\"type\": \"string\"},\n                \"updatedAt\": {\"type\": \"string\"},\n                \"__v\": {\"type\": \"integer\"}\n            }\n        },\n        \"redirect\": {\"type\": \"string\"}\n    }\n}\n\n ```\n\nThis endpoint allows the client to update user details via a PUT request.\n\n## Request\n\nThe request should include the following parameters in the x-www-form-urlencoded request body:\n\n- `id` (text): The unique identifier of the user.\n    \n- `phoneNumber` (text): The updated phone number of the user.\n    \n- `address` (text): The updated address of the user.\n    \n\n## Response\n\nThe response for this request is a JSON object conforming to the following schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"status\": {\n      \"type\": \"string\"\n    },\n    \"message\": {\n      \"type\": \"string\"\n    }\n  }\n}\n\n ```\n\nThe `status` property indicates the status of the update operation, and the `message` property provides additional information about the update status."
+					},
+					"response": []
+				},
+				{
+					"name": "dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "### Get User Dashboard\n\nThis endpoint makes an HTTP GET request to retrieve the user's dashboard information.\n\n#### Request Body\n\nThis request does not require a request body.\n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\n``` json\n{\n    \"status\": \"\",\n    \"message\": \"\",\n    \"user\": {\n        \"_id\": \"\",\n        \"email\": \"\",\n        \"username\": \"\",\n        \"role\": \"\",\n        \"__t\": \"\",\n        \"order\": [],\n        \"address\": \"\",\n        \"phoneNumber\": \"\",\n        \"cart\": [],\n        \"createdAt\": \"\",\n        \"updatedAt\": \"\",\n        \"__v\": 0\n    }\n}\n\n ```\n\nThe response includes the user's dashboard information with fields such as user ID, email, username, role, orders, address, phone number, cart, and timestamps for creation and update."
+					},
+					"response": []
+				}
+			],
+			"description": "The `/user` endpoints let you manage information about the authenticated user."
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Flour",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f034a70-52bb-4a60-9fae-0b21b127b9c6"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4000/admin/products/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"admin",
+										"products",
+										"create"
+									]
+								},
+								"description": "## Create Product\n\nThis endpoint allows administrators to create a new product.\n\n### Request\n\n- Method: POST\n    \n- URL: `http://localhost:4000/admin/products/create`\n    \n- Headers:\n    \n    - Content-Type: `multipart/form-data`\n        \n\n#### Request Body\n\n- `name` (text): Description of the product\n    \n- `price` (text): Price of the product\n    \n- `file` (file): Image of the product\n    \n\n### Response\n\n- Status: 201\n    \n- Content-Type: application/json\n    \n\n#### Response Body (JSON Schema)\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"status\": {\"type\": \"string\"},\n    \"message\": {\"type\": \"string\"},\n    \"product\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"name\": {\"type\": \"string\"},\n        \"price\": {\"type\": \"string\"},\n        \"imageUrl\": {\"type\": \"string\"},\n        \"_id\": {\"type\": \"string\"},\n        \"createdAt\": {\"type\": \"string\"},\n        \"updatedAt\": {\"type\": \"string\"},\n        \"__v\": {\"type\": \"number\"}\n      }\n    }\n  }\n}\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "get all products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"description": "The endpoint retrieves a list of products available for admin view.\n\n### Response\n\nThe response will be in JSON format with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"status\": {\n            \"type\": \"string\"\n        },\n        \"message\": {\n            \"type\": \"string\"\n        },\n        \"products\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\"\n                    },\n                    \"name\": {\n                        \"type\": \"string\"\n                    },\n                    \"price\": {\n                        \"type\": \"string\"\n                    },\n                    \"imageUrl\": {\n                        \"type\": \"string\"\n                    },\n                    \"createdAt\": {\n                        \"type\": \"string\"\n                    },\n                    \"updatedAt\": {\n                        \"type\": \"string\"\n                    },\n                    \"__v\": {\n                        \"type\": \"integer\"\n                    }\n                }\n            }\n        }\n    }\n}\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "get one product by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"description": "The endpoint retrieves a list of products available for admin view.\n\n### Response\n\nThe response will be in JSON format with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"status\": {\n            \"type\": \"string\"\n        },\n        \"message\": {\n            \"type\": \"string\"\n        },\n        \"products\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\"\n                    },\n                    \"name\": {\n                        \"type\": \"string\"\n                    },\n                    \"price\": {\n                        \"type\": \"string\"\n                    },\n                    \"imageUrl\": {\n                        \"type\": \"string\"\n                    },\n                    \"createdAt\": {\n                        \"type\": \"string\"\n                    },\n                    \"updatedAt\": {\n                        \"type\": \"string\"\n                    },\n                    \"__v\": {\n                        \"type\": \"integer\"\n                    }\n                }\n            }\n        }\n    }\n}\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "tomato",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f034b41-ca77-46e0-a159-0b19b879dc23"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4000/admin/products/682b29909f464ecfae5e8a66/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"admin",
+										"products",
+										"682b29909f464ecfae5e8a66",
+										"update"
+									]
+								},
+								"description": "### Update Product\n\nThis endpoint is used to update a specific product in the admin system.\n\n#### Request Body\n\n- `name` (text): The name of the product.\n    \n- `price` (text): The price of the product.\n    \n- `file` (file): The image file of the product.\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- `status` (string): The status of the update operation.\n    \n- `message` (string): A message regarding the update operation.\n    \n- `product` (object): An object containing the updated product details, including its ID, name, price, image URL, creation and update timestamps, and version."
+							},
+							"response": []
+						},
+						{
+							"name": "delete a product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "tomato",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1f034b41-ca77-46e0-a159-0b19b879dc23"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4000/admin/products/682b29909f464ecfae5e8a66/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"admin",
+										"products",
+										"682b29909f464ecfae5e8a66",
+										"delete"
+									]
+								},
+								"description": "### Delete Product\n\nThis endpoint is used to delete a specific product by its ID.\n\n#### Request Body\n\n- `name` (text): The name of the product to be deleted.\n    \n- `price` (text): The price of the product to be deleted.\n    \n- `file` (file): An optional file related to the product.\n    \n\n#### Response\n\nUpon successful deletion, the server responds with a status code of 200 and a JSON object containing the following fields:\n\n- `status`: The status of the operation.\n    \n- `message`: A message related to the deletion operation.\n    \n- `product`: An object representing the deleted product, including its ID, name, price, image URL, creation and update timestamps, and version."
+							},
+							"response": []
+						}
+					],
+					"description": "The `/admin/products` lease out an api for admins to manage products on the app"
+				},
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "get all orders",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/admin/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"admin",
+										"orders"
+									]
+								},
+								"description": "### GET /admin/orders\n\nThis endpoint retrieves a list of orders for the admin.\n\n#### Request\n\nNo request body is required for this request.\n\n#### Response\n\nThe response will be a JSON object with the following schema:\n\n``` json\n{\n  \"orders\": [\n    {\n      \"_id\": \"String\",\n      \"product\": \"String\",\n      \"buyer\": \"String\",\n      \"status\": \"String\",\n      \"address\": \"String\",\n      \"phoneNumber\": \"String\",\n      \"paymentMethod\": \"String\",\n      \"paymentStatus\": \"String\",\n      \"delivered\": \"Boolean\",\n      \"deliveredAt\": \"Date\",\n      \"createdAt\": \"Date\",\n      \"__v\": \"Number\"\n    }\n  ],\n  \"status\": \"String\"\n}\n\n ```"
+							},
+							"response": []
+						}
+					],
+					"description": "The `/admin/orders` lease out api for admins to manage orders"
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"description": "The `/admin` routes provide api for admins to manage users and application details"
+		},
+		{
+			"name": "home",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "john doe",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234567890",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "### Login\n\nThis endpoint allows users to log in to the application.\n\n#### Request Body\n\n- `password` (text)\n    \n- `email` (text)\n    \n\n#### Response\n\nThe response is a JSON object with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"status\": {\n            \"type\": \"string\"\n        },\n        \"message\": {\n            \"type\": \"string\"\n        },\n        \"redirect\": {\n            \"type\": \"string\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "home",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "register user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "john doe",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jd@gmain.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234567890",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"create"
+							]
+						},
+						"description": "### Register User\n\nThis endpoint allows the client to register a new user.\n\n#### Request Body Parameters\n\n- `username` (text): The username of the user.\n    \n- `email` (text): The email address of the user.\n    \n- `password` (text): The password for the user account.\n    \n\n#### Response\n\nThe response will contain the registered user's information and a list of operations.\n\nExample response:\n\n``` json\n{\n    \"user\": {\n        \"id\": 0,\n        \"username\": \"\",\n        \"email\": \"\",\n    }\n    ]\n}\n\n ```\n\nThis endpoint allows the client to register a new user.\n\n#### Request Body\n\n- `username` (text): The username of the user.\n    \n- `email` (text): The email address of the user.\n    \n- `password` (text): The password for the user account.\n    \n\n#### Response\n\nUpon successful registration, the server responds with the following data:\n\n- `user` (object):\n    \n    - `id` (number): The unique identifier of the user.\n        \n    - `username` (string): The username of the user.\n        \n    - `email` (string): The email address of the user.\n        \n    - `fullName` (string): The full name of the user.\n        \n    - `avatar` (string): The avatar of the user.\n        \n    - `isPublic` (boolean): Indicates if the user's profile is public.\n        \n- `operations` (array):\n    \n    - `name` (string): The name of the operation.\n        \n    - `limit` (number): The limit of the operation.\n        \n    - `usage` (number): The current usage of the operation.\n        \n    - `overage` (number): The overage of the operation."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.getpostman.com/me",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Rate Limit Exceeded",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.getpostman.com/me",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"me"
+									]
+								}
+							},
+							"status": "Too Many Requests",
+							"code": 429,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+						}
+					]
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "### GET /home/products\n\nThis endpoint retrieves a list of products.\n\n#### Request\n\nThis request does not require any request body.\n\n#### Response\n\nThe response will be in JSON format with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"status\": {\n            \"type\": \"string\"\n        },\n        \"message\": {\n            \"type\": \"string\"\n        },\n        \"products\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"_id\": {\n                        \"type\": \"string\"\n                    },\n                    \"name\": {\n                        \"type\": \"string\"\n                    },\n                    \"price\": {\n                        \"type\": \"string\"\n                    },\n                    \"imageUrl\": {\n                        \"type\": \"string\"\n                    },\n                    \"createdAt\": {\n                        \"type\": \"string\"\n                    },\n                    \"updatedAt\": {\n                        \"type\": \"string\"\n                    },\n                    \"__v\": {\n                        \"type\": \"number\"\n                    }\n                }\n            }\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				}
+			],
+			"description": "The `/home` routes lease out an api that users can view without being authenticated"
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "X-API-Key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://farming-simulator.pstmn.io"
+		}
+	]
+}
