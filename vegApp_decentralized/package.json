@@ -1,6 +1,6 @@
 {
   "name": "vegetablesshop",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A minimalist applicaton for easing the tasks of vegetable businesses.",
   "main": "index.js",
   "scripts": {
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/venemousCoder/vegapp.git"
+    "url": "https://github.com/venemousCoder/vegApp_decentralized.git"
   },
-  "author": "venemousCoder, mustaphaBakoji",
+  "author": "venemousCoder",
   "license": "MIT",
   "dependencies": {
     "cloudinary": "^1.41.3",
